@@ -27,6 +27,11 @@ Ensure you have python installed on your machine
    ```sh
    pip install django
    ```
+ 2. To load images
+ 3. Install pillow
+   ```sh
+   pip install pillow
+   ```
 ### Development and Testing
 Change directory into the repository folder
 
