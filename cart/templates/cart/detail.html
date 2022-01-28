@@ -1,0 +1,64 @@
+{% extends 'market/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'market/navbar.html' %}
+<div class="container">
+    <h1 class="main-name">Your shopping cart</h1>
+    <table class="cart container">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Unit Price</th>
+                {% comment %} <th>Remove</th> {% endcomment %}
+            </tr>
+        </thead>
+        <tbody class="cart-body">
+            {% for item in cart %}
+                {% with product=item.product %}
+                <tr>
+                    <td class="table-data">
+                        <a href="#">
+                            <img src="{{product.imageURL}}">
+                        </a>
+                        </td>
+                        <td>{{product.name}}</td>
+                        <td>
+                            <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                {{ item.update_quantity_form.quantity }}
+                                {{ item.update_quantity_form.override }}
+                                {% comment %} <input class='btn' type="submit" value="Update"> {% endcomment %}
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        
+                        <td class="num">${{item.price}}</td>
+                        <td class="num">${{item.total_price}}</td>
+                        <td>
+                            <form action="{% url 'cart:cart_remove' product.id%}" method="post">
+                                <input class='btn btn-remove' type="submit" value="X">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                </tr>
+                        
+                    {% endwith %}
+            {% endfor %}
+            <tr class="total">
+                <td>Total</td>
+                <td colspan="4"></td>
+                <td class="num">${{ cart.get_total_price }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <span class="flex text-right">
+        <a class="btn" href="{% url "market:store" %}" class="button light">Continue shopping</a>
+        <a class="btn" href="#" class="button">Checkout</a>
+    </span>
+
+</div>
+{% include 'market/footer.html' %}
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends 'market/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'market/navbar.html' %}
+<section class="showcase container">
+    <div class="showcase-text">
+        <h2 class="main-name">Explore electrical appliances</h2>
+    </div>
+    <div class="grid">
+        {%for product in products%}
+            <div class="card">
+                <img src="{{product.imageURL}}" >
+                <h4>{{product.name}}</h4>
+                <h3>{{product.price}}<h3>
+                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input class="btn" type="submit" value="Add to cart">
+                </form>
+            </div>
+        {%endfor%}
+    </div>
+</section>
+{% include 'market/footer.html' %}
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'market/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="login container">
+        <div class="flex">
+            {% if form.errors %}
+            <p>Wrong password</p>
+            {% endif %}
+            <form class="login-form"  method='post' action="{% url 'users:login'%}">
+                <h2 class='main-name'>Instaswap</h2>
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn" name='submit'>Log in</button>
+                <input name='next' type='hidden' value="{% url 'market:store'%}"/>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

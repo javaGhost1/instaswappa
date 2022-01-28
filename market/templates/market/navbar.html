@@ -1,0 +1,29 @@
+{% extends 'market/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="navbar">
+    <div class="container flex">
+       <a href="{% url 'market:store'%}"> <h2 class="main-name">Instaswap</h2></a>
+        <ul>
+            <li><a href="#">Laptops</a></li>
+            <li><a href="#">Phones</a></li>
+            <li><a href="#">Electrical Appliances</a></li>
+            <li><a href="#">Gaming</a></li>
+        </ul>
+        <div class='user'>
+            {% if user.is_authenticated%}
+              Hello, {{user.username}}
+              <a href="{% url 'users:logout'%}">Log out</a>
+              
+            {%else%}
+                <a href="{% url 'users:login'%}" class='login'>Login</a>
+                <a href="{% url 'users:register'%}" class='login'>Register</a>
+
+            {%endif%}
+            <a href="{% url 'cart:cart_detail'%}" style="color:red;" class="cart">Cart</a>
+    </div>
+    
+</div>
+
+{% endblock content %}
