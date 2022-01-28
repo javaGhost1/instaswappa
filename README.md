@@ -16,10 +16,11 @@ Ensure you have python installed on your machine
 2. Change directory into the repository folder
 3. Run the terminal in the directory containing the repo
 4. Set up a virtual enviroment in the folder contain the repo
-```sh
-   python3 -m venv ll_env   ```
+   ```sh
+   python3 -m venv ll_env  
+   ```
 5. Activate virtual enviroment
-```sh
+   ```sh
    source ll_env/bin/activate
    ```
 ## installation
