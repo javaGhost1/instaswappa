@@ -6,6 +6,7 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 # instaswappa
+An online store with a variety of functionality.  
 Ensure you have python installed on your machine
 
 ### Setup
